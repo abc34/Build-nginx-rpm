@@ -6,6 +6,7 @@ rpm -Uvh --force nginx-1.11.6-1.el7.ngx.x86_64.rpm
 service rockstor start
 ```
 Tested on Rockstor 3.8.15.
+
 Not done:
  - Not persistent `listen 443 ssl http2 default_config;` nginx configuration directive.
 After reboot `ssl http2` disappear.
