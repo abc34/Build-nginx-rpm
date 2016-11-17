@@ -8,7 +8,7 @@ service rockstor start
 Tested on Rockstor 3.8.15.
 
 Not done:
- - Not persistent `listen 443 ssl http2 default_config;` nginx configuration directive.
+ - nginx directive `listen 443 ssl http2 default_server;` not persistent.<br/>
 After reboot `ssl http2` disappear.
 See source https://github.com/rockstor/rockstor-core/blob/3.8.15/src/rockstor/system/services.py.
 
