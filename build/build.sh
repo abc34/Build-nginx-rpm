@@ -13,7 +13,7 @@ yum clean all
 # Install epel packages (required for GeoIP-devel)
 yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 yum -y groupinstall 'Development Tools'
-yum -y install wget openssl-devel pcre-devel libxml2-devel libxslt-devel gd-devel zlib-devel perl-ExtUtils-Embed GeoIP-devel #zlib-devel
+yum -y install wget openssl-devel pcre-devel libxml2-devel libxslt-devel gd-devel zlib-devel perl-ExtUtils-Embed GeoIP-devel
   
 useradd builder
 groupadd builder
