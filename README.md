@@ -5,6 +5,13 @@ service rockstor stop
 rpm -Uvh --force nginx-1.11.6-1.el7.ngx.x86_64.rpm
 service rockstor start
 ```
+
+Build command:
+```
+cd build
+bash build.sh
+```
+
 Tested on Rockstor 3.8.15.
 
 Not done:
