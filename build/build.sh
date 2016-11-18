@@ -32,7 +32,6 @@ echo "Edit or replace nginx.spec file to new one and run command"
 echo "    rpmbuild -ba ~/rpmbuild/SPECS/nginx.spec"
 cp -f nginx.spec ~/rpmbuild/SPECS/nginx.spec
 sed -i "s|--with-http_ssl_module|--with-http_ssl_module --with-openssl=$OPT_DIR/$OPENSSL|g" ~/rpmbuild/SPECS/nginx.spec
-exit 0
 rpmbuild -ba ~/rpmbuild/SPECS/nginx.spec
 echo "To update "
 echo "    rpm -Uvh --force ~/rpmbuild/RPMS/x86_64/$NGINX-1.el$CENTVER.ngx.x86_64.rpm"
