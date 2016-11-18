@@ -54,25 +54,23 @@ BuildRequires: systemd
 
 %define WITH_CC_OPT $(echo %{optflags} $(pcre-config --cflags))
 
-%define BASE_CONFIGURE_ARGS $(echo " \
---prefix=%{_datadir}/nginx \
+%define BASE_CONFIGURE_ARGS $(echo "\
+--prefix=%{_sysconfdir}/nginx \
 --sbin-path=%{_sbindir}/nginx \
 --modules-path=%{_libdir}/nginx/modules \
 --conf-path=%{_sysconfdir}/nginx/nginx.conf \
 --error-log-path=%{_localstatedir}/log/nginx/error.log \
 --http-log-path=%{_localstatedir}/log/nginx/access.log \
---pid-path=/run/nginx.pid \
---lock-path=/run/lock/subsys/nginx \
---http-client-body-temp-path=%{_sharedstatedir}/nginx/tmp/client_body \
---http-proxy-temp-path=%{_sharedstatedir}/nginx/tmp/proxy \
---http-fastcgi-temp-path=%{_sharedstatedir}/nginx/tmp/fastcgi \
---http-uwsgi-temp-path=%{_sharedstatedir}/nginx/tmp/uwsgi \
---http-scgi-temp-path=%{_sharedstatedir}/nginx/tmp/scgi \
+--pid-path=%{_localstatedir}/run/nginx.pid \
+--lock-path=%{_localstatedir}/run/nginx.lock \
+--http-client-body-temp-path=%{_localstatedir}/cache/nginx/client_temp \
+--http-proxy-temp-path=%{_localstatedir}/cache/nginx/proxy_temp \
+--http-fastcgi-temp-path=%{_localstatedir}/cache/nginx/fastcgi_temp \
+--http-uwsgi-temp-path=%{_localstatedir}/cache/nginx/uwsgi_temp \
+--http-scgi-temp-path=%{_localstatedir}/cache/nginx/scgi_temp \
 --user=%{nginx_user} \
 --group=%{nginx_group} \
---with-openssl=/opt/lib/openssl-1.1.0c \
 --with-compat \
---with-ipv6 \
 --with-file-aio \
 --with-threads \
 --with-http_addition_module \
@@ -81,7 +79,9 @@ BuildRequires: systemd
 --with-http_flv_module \
 --with-http_gunzip_module \
 --with-http_gzip_static_module \
+--with-http_image_filter_module \
 --with-http_mp4_module \
+--with-http_perl_module=dynamic \
 --with-http_random_index_module \
 --with-http_realip_module \
 --with-http_secure_link_module \
@@ -90,21 +90,22 @@ BuildRequires: systemd
 --with-http_stub_status_module \
 --with-http_sub_module \
 --with-http_v2_module \
+--with-http_xslt_module=dynamic \
 --with-mail \
 --with-mail_ssl_module \
 --with-stream \
 --with-stream_realip_module \
 --with-stream_ssl_module \
 --with-stream_ssl_preread_module \
---with-pcre \
 --with-pcre-jit \
---with-http_xslt_module=dynamic \
---with-http_image_filter_module=dynamic \
---with-http_geoip_module=dynamic \
---with-http_degradation_module \
---with-http_perl_module=dynamic \
---with-google_perftools_module \
---with-debug \
+--without-http_ssi_module \
+--without-http_scgi_module \
+--without-http_uwsgi_module \
+--without-http_geo_module \
+--without-http_autoindex_module \
+--without-http_split_clients_module \
+--without-http_empty_gif_module \
+--without-http_browser_module \
 ")
 
 Summary: High performance web server
@@ -115,7 +116,7 @@ Vendor: Nginx, Inc.
 URL: http://nginx.org/
 Group: %{_group}
 
-Source0: http://nginx.org/download/%{name}-%{version}.tar.gz
+Source0: https://nginx.org/download/%{name}-%{version}.tar.gz
 Source1: logrotate
 Source2: nginx.init.in
 Source3: nginx.sysconf
@@ -236,6 +237,10 @@ cd $RPM_BUILD_ROOT%{_sysconfdir}/nginx && \
 
 %files
 %defattr(-,root,root)
+
+%config(noreplace) /usr/lib64/nginx/modules/*
+%config(noreplace) /usr/lib64/perl5/*
+%config(noreplace) /usr/share/man/man3/*
 
 %{_sbindir}/nginx
 %{_sbindir}/nginx-debug
