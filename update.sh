@@ -7,7 +7,7 @@ echo "Stopping rockstor service ..."
 service rockstor stop
 
 echo "Update ..."
-rpm -Uvh --force ./$NGINX-1.el$CENTVER.ngx.x86_64.rpm
+rpm -Uvh --force ./$NGINX-1.el$CENTVER.centos.ngx.x86_64.rpm
 
 echo "Starting rockstor service ..."
 service rockstor start
