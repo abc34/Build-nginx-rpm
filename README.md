@@ -18,3 +18,8 @@ Not done:
 After reboot `ssl http2` disappear.<br/>
 See source [services.py](https://github.com/rockstor/rockstor-core/blob/3.8.15/src/rockstor/system/services.py).
 
+Resources:
+ - https://github.com/ajhaydock/BoringNginx
+ - https://github.com/Wonderfall/dockerfiles/tree/master/boring-nginx
+ 
+
