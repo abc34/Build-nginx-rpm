@@ -14,7 +14,7 @@ B_DIR="$PWD/build"
 
 sudo mkdir -p "$B_DIR" && sudo rm -rf "$B_DIR/*" && sudo chown -R $USER "$B_DIR"
 
-sudo yum clean all; sudo yum upgrade -y
+sudo yum clean all; sudo yum -y upgrade;
 sudo yum -y groupinstall 'Development Tools'
 sudo yum -y install wget; #cmake go libxml2-devel libxslt-devel gd-devel zlib-devel perl-ExtUtils-Embed GeoIP-devel
   
