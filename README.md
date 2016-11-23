@@ -11,7 +11,7 @@ Build command:
 bash build.sh
 ```
 
-Tested on Rockstor 3.8.15.
+Tested on CentOS 7.2.1511-Minimal (build and update) and Rockstor 3.8.15 (only update).
 
 Not done:
  - nginx directive `listen 443 ssl http2 default_server;` not persistent.<br/>
