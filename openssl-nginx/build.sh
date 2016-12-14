@@ -34,7 +34,8 @@ cd "$B_DIR" && wget http://zlib.net/$ZLIB.tar.gz && tar -zxvf $ZLIB.tar.gz
 
 mkdir -p "$B_DIR/modules";
 # Google Brotli
-#cd $B_DIR/modules && git clone "https://github.com/google/ngx_brotli"
+cd $B_DIR/modules && git clone "https://github.com/google/ngx_brotli"
+cd ngx_brotli && git submodule update --init
 # OpenResty Headers More
 cd "$B_DIR/modules" && git clone "https://github.com/openresty/headers-more-nginx-module"
 # nginx-dav-ext-module
@@ -52,6 +53,7 @@ sed -i "s|^BuildRequires: zlib-devel|#BuildRequires: zlib-devel|g" "$B_DIR/rpmbu
 sed -i "s|--with-http_ssl_module|--with-http_ssl_module --with-openssl=$B_DIR/$OPENSSL |g" "$B_DIR/rpmbuild/SPECS/nginx.spec"
 sed -i "s|--with-http_ssl_module|--with-http_ssl_module --with-pcre=$B_DIR/pcre-$PCRE --with-pcre-jit|g" "$B_DIR/rpmbuild/SPECS/nginx.spec"
 sed -i "s|--with-http_ssl_module|--with-http_ssl_module --with-zlib=$B_DIR/$ZLIB|g" "$B_DIR/rpmbuild/SPECS/nginx.spec"
+sed -i "s|--with-http_ssl_module|--with-http_ssl_module --add-module=$B_DIR/modules/ngx_brotli|g" "$B_DIR/rpmbuild/SPECS/nginx.spec"
 sed -i "s|--with-http_ssl_module|--with-http_ssl_module --add-module=$B_DIR/modules/headers-more-nginx-module|g" "$B_DIR/rpmbuild/SPECS/nginx.spec"
 sed -i "s|--with-http_ssl_module|--with-http_ssl_module --add-module=$B_DIR/modules/nginx-dav-ext-module-0.0.3|g" "$B_DIR/rpmbuild/SPECS/nginx.spec"
 sed -i "s|--with-cc-opt=\"%{WITH_CC_OPT}\"|--with-cc-opt=\"%{WITH_CC_OPT} -I $B_DIR/expat-2.2.0/lib -Wno-deprecated-declarations\"|g" "$B_DIR/rpmbuild/SPECS/nginx.spec"
