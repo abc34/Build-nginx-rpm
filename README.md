@@ -1,9 +1,11 @@
 # Update-Rockstor-nginx
-Update to nginx-1.11.6 with openssl-1.1.0c, pcre-8.39, zlib-1.2.8
-and added modules:
+Update to nginx-1.11.6 with
+- openssl-1.1.0c, pcre-8.39, zlib-1.2.8
 - ngx-brotli module
 - headers-more-nginx-module
 - nginx-dav-ext-module
+
+Install command:
 ```
 service rockstor stop
 rpm -Uvh --force nginx-1.11.6-1.el7.centos.ngx.x86_64.rpm
